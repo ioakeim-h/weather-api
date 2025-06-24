@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS forecasts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    location_id INTEGER,
+    date TEXT NOT NULL,
+    temperature REAL NOT NULL,
+    FOREIGN KEY (location_id) REFERENCES locations (id)
+    UNIQUE (location_id, date) -- Prevents duplicates
+)

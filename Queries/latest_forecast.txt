@@ -1,0 +1,22 @@
+SELECT 
+    date,
+    temperature,
+    CASE
+        WHEN location_id = 1 THEN 'Marathonas'
+        WHEN location_id = 2 THEN 'Chalandri'
+        WHEN location_id = 3 THEN 'Kallimarmaro'
+        ELSE 'Not Defined'
+    END AS location_name
+FROM (
+    SELECT
+        date,
+        temperature,
+        location_id,
+        ROW_NUMBER() OVER (
+            PARTITION BY location_id, DATE(date)
+            ORDER BY date DESC
+        ) AS rn
+    FROM forecasts
+) AS ranked_forecasts
+WHERE rn = 1
+ORDER BY date DESC, location_id

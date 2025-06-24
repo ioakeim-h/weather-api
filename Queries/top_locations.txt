@@ -1,0 +1,12 @@
+SELECT 
+	ROUND(AVG(temperature), 2) as average_temperature,
+	CASE
+            WHEN location_id = 1 THEN 'Marathonas'
+            WHEN location_id = 2 THEN 'Chalandri'
+            WHEN location_id = 3 THEN 'Kallimarmaro'
+            ELSE 'Not Defined'
+        END AS location_name
+FROM forecasts 
+GROUP BY location_name 
+ORDER BY average_temperature DESC 
+LIMIT :n
