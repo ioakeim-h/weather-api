@@ -7,7 +7,7 @@ from datetime import datetime
 from utils import prepare_export_dir, get_forecast_data, build_forecasts_dataframe
 from sql_operations import connect_to_sql, createSQL_locations_forecasts, updateSQL_locations_forecasts
 
-username = "..." # Too lazy to add these as system variables :/
+username = "..." # Add these as system variables 
 password = "..."
 
 export_dir = "./Exports"
